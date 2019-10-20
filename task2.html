@@ -8,5 +8,28 @@
 </head>
 <body>
     <h1>Task 2</h1>
+
+    <script>
+        function chooseSort(arr) {
+            let min = {el: arr[0], index: 0};
+            for (let k = arr.length - 1; k > 0; k--) {
+
+                let klen = arr.length - k - 1;
+                let min = {el: arr[klen], index: klen};
+
+                for (let i = klen + 1, length = arr.length; i < length; i++) {
+                    if (arr[i] < min.el) min = {el: arr[i], index: i};
+                }
+
+                let c = arr[klen];
+                arr[klen] = arr[min.index];
+                arr[min.index] = c;
+            }
+            return arr;
+        }
+        const res = chooseSort([5,3,0,2,1,7]);
+        console.log('start', [5,3,0,2,1,7]);
+        console.log('res', res);
+    </script>
 </body>
 </html>
