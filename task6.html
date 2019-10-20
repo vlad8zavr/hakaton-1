@@ -10,56 +10,63 @@
     <h1>Task 6 Простые числа</h1>
 
     <script>
-        function getSimples(number) {
-            let res = [];
-            if (number === 0 || number === 1) return res;
-            else if (number === 2) return [number];
-            else {
-                for (let i = 3; i <= number; i = i + 2) {
-                    let count = false;
-                    for (let j = 3; j < i; j++) {
-                        if (i % j === 0) {
-                            count = true;
-                            continue;
-                        };
-                    }
-                    !count && res.push(i);
-                }
-            }
-            return res;
-        }
         function getSimplesNew(number) {
+            console.log('number =', number);
             let res = [];
             if (number === 0 || number === 1) return res;
             else if (number === 2) return [number];
             else {
-                for (let i = 3; i <= number; i = i + 2) {
-                    let count = false;
-                    let start = 3;
-                    let curlen = i;
-                    
-                    if (res.length > 0) {
-                        start = 0;
-                        curlen = res.length;
+                res.push(2);
+                console.log('simple', window.simpleNumbers);
+                // hash check here
+                if (window.simpleNumbers && window.simpleNumbers[window.simpleNumbers.length - 1] >= number) {
+                    let index = 0;
+                    while (window.simpleNumbers[index] <= number) {
+                        res.push(window.simpleNumbers[index]);
+                        index++;
                     }
-
-                    console.log('start = ', start);
-                    for (let j = start; j < curlen; j++) {
-                        
-                        let del = (start === 0) ? res[j] : j;
-
-                        if (i % del === 0) {
-                            count = true;
-                            continue;
-                        };
-                    }
-                    !count && res.push(i);
+                    console.log('newArr', res);
                 }
+                else if (window.simpleNumbers) {
+                    res = window.simpleNumbers;
+                    res = collectRes(res, number, res[res.length - 1]);
+                    console.log('half new arr', res);
+                }
+                else {
+                    res = collectRes(res, number, 3);
+                    console.log('first arr', res);
+                }
+                
+            }
+            if (!window.simpleNumbers || res.length > window.simpleNumbers.length) {
+                window.simpleNumbers = res;
             }
             return res;
         }
-        console.log('hello')
-        console.log(getSimplesNew(13));
+        function collectRes(res, number, len) {
+            for (let i = len; i <= number; i = i + 2) {
+                let count = false;
+                let start = 3, curlen = i;
+                
+                if (res.length > 0) {
+                    start = 0;
+                    curlen = res.length;
+                }
+
+                for (let j = start; j < curlen; j++) {
+                    let del = (start === 0) ? res[j] : j;
+                    if (i % del === 0) {
+                        count = true;
+                        continue;
+                    };
+                }
+                !count && res.push(i);
+            }
+            return res;
+        }
+        console.log('hello');
+        console.log(getSimplesNew(42));
+        window.getSimplesNew = getSimplesNew;
     </script>
 </body>
 </html>
