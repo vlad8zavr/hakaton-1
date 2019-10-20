@@ -28,7 +28,38 @@
             }
             return res;
         }
-        console.log(getSimples(42));
+        function getSimplesNew(number) {
+            let res = [];
+            if (number === 0 || number === 1) return res;
+            else if (number === 2) return [number];
+            else {
+                for (let i = 3; i <= number; i = i + 2) {
+                    let count = false;
+                    let start = 3;
+                    let curlen = i;
+                    
+                    if (res.length > 0) {
+                        start = 0;
+                        curlen = res.length;
+                    }
+
+                    console.log('start = ', start);
+                    for (let j = start; j < curlen; j++) {
+                        
+                        let del = (start === 0) ? res[j] : j;
+
+                        if (i % del === 0) {
+                            count = true;
+                            continue;
+                        };
+                    }
+                    !count && res.push(i);
+                }
+            }
+            return res;
+        }
+        console.log('hello')
+        console.log(getSimplesNew(13));
     </script>
 </body>
 </html>
