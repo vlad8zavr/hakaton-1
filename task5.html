@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Task5 Скобки (стек)</h1>
+
+    <script>
+        function checkBrackets(str) {
+            var stek1 = []; // ()
+            var stek2 = []; // []
+            var stek3 = []; // <>
+            var stek4 = []; // {}
+            for (let i = 0; i < str.length; i++) {
+                if      (str[i] === '(') stek1.push(str[i]);
+                else if (str[i] === '[') stek2.push(str[i]);
+                else if (str[i] === '<') stek3.push(str[i]);
+                else if (str[i] === '{') stek4.push(str[i]);
+
+                else if (str[i] === ')') {
+                    if (stek1.length === 0) return false;
+                    stek1.pop();
+                }
+                else if (str[i] === ']') {
+                    if (stek2.length === 0) return false;
+                    stek2.pop();
+                }
+                else if (str[i] === '>') {
+                    if (stek3.length === 0) return false;
+                    stek3.pop();
+                }
+                else if (str[i] === '}') {
+                    if (stek4.length === 0) return false;
+                    stek4.pop();
+                }
+            }
+            return stek1.length == 0 && stek2.length == 0 && stek3.length == 0 && stek4.length == 0;
+        }
+
+        console.log(checkBrackets('asd()} []asd'))
+    </script>
+</body>
+</html>
