@@ -11,37 +11,25 @@
 
     <script>
         function checkBrackets(str) {
-            var stek1 = []; // ()
-            var stek2 = []; // []
-            var stek3 = []; // <>
-            var stek4 = []; // {}
-            for (let i = 0; i < str.length; i++) {
-                if      (str[i] === '(') stek1.push(str[i]);
-                else if (str[i] === '[') stek2.push(str[i]);
-                else if (str[i] === '<') stek3.push(str[i]);
-                else if (str[i] === '{') stek4.push(str[i]);
+            var stek = [];
+            var a = { '(': 1, '[': 2, '<': 3, '{': 4 };
+            var b = { ')': 1, ']': 2, '>': 3, '}': 4 };
 
-                else if (str[i] === ')') {
-                    if (stek1.length === 0) return false;
-                    stek1.pop();
+            for (let i = 0; i < str.length; i++) {
+                if (a[str[i]]) {
+                    stek.push(str[i]);
                 }
-                else if (str[i] === ']') {
-                    if (stek2.length === 0) return false;
-                    stek2.pop();
-                }
-                else if (str[i] === '>') {
-                    if (stek3.length === 0) return false;
-                    stek3.pop();
-                }
-                else if (str[i] === '}') {
-                    if (stek4.length === 0) return false;
-                    stek4.pop();
+                else if (b[str[i]]) {
+                    if (stek.length === 0 || b[str[i]] !== a[stek[stek.length - 1]]) {
+                        return false;
+                    }
+                    stek.pop();
                 }
             }
-            return stek1.length == 0 && stek2.length == 0 && stek3.length == 0 && stek4.length == 0;
+            return stek.length === 0;
         }
 
-        console.log(checkBrackets('asd()} []asd'))
+        console.log(checkBrackets('asd(){} []asd'))
     </script>
 </body>
 </html>
