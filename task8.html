@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Task 8 разворачивание односвязного списка</h1>
+
+    <script>
+        function spreadList(list) {
+
+            if (list !== undefined) {
+                stack.push(list);
+                list.next && spreadList(list.next);
+            }
+            
+            res.push(stack.pop());
+        }
+        const list = {
+            v: 1,
+            next: {
+                v: 2,
+                next: {
+                    v: 3,
+                    next: {
+                        v: 4
+                    }
+                }
+            }
+        }
+        let res = [];
+        let stack = [];
+        spreadList(list);
+        console.log('res', res);
+    </script>
+</body>
+</html>
