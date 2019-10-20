@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <h1>Task 4 обход дерева в ширину</h1>
+
+        <script>
+            function walkThrough(root) {
+                queue.push(root);
+                while (queue.length > 0) {
+                    let res = queue.shift();
+                    console.log(res.val);
+                    res.l && queue.push(res.l);
+                    res.r && queue.push(res.r);
+                }
+            }
+
+            var queue = [];
+            var tree = {
+                val: 1,
+                l: {
+                    val: 2,
+                    l: {
+                        val: 4,
+                        l: {
+                            val: 7,
+                            l: null,
+                            r: null
+                        },
+                        r: {
+                            val: 8,
+                            l: null,
+                            r: null
+                        }
+                    },
+                    r: {
+                        val: 5,
+                        l: null,
+                        r: null
+                    }
+                },
+                r: {
+                    val: 3,
+                    l: {
+                        val: 6,
+                        l: null,
+                        r: null
+                    },
+                    r: null
+                }
+            }
+
+            console.log(tree);
+            walkThrough(tree);
+        </script>
+</body>
+</html>
