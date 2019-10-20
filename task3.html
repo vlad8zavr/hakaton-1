@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Task 3</h1>
+
+    <script>
+        function walkThrough(root) {
+            if (root !== null && root.val) {
+                console.log(root.val);
+                root.l && walkThrough(root.l);
+                root.r && walkThrough(root.r);
+            }
+        }
+        var tree = {
+            val: 1,
+            l: {
+                val: 2,
+                l: {
+                    val: 4,
+                    l: {
+                        val: 7,
+                        l: null,
+                        r: null
+                    },
+                    r: {
+                        val: 8,
+                        l: null,
+                        r: null
+                    }
+                },
+                r: {
+                    val: 5,
+                    l: null,
+                    r: null
+                }
+            },
+            r: {
+                val: 3,
+                l: {
+                    val: 6,
+                    l: null,
+                    r: null
+                },
+                r: null
+            }
+        }
+
+        console.log(tree);
+        walkThrough(tree);
+    </script>
+</body>
+</html>
